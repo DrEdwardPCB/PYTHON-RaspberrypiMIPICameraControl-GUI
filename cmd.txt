@@ -1,0 +1,23 @@
+//////////////////////////////////////////////////
+
+timeout=10000 ;
+quality=50 ;
+mode=1 ;
+awb=1 ;
+ae=1 ;
+capture="capture1.jpg" ;
+encoding="jpg" ;
+cd $HOME/Desktop ;
+MIPI_Camera-master/RPI/arducamstill -t $timeout -q $quality -m $mode -awb $awb -ae $ae -o $capture -e $encoding;
+
+////////////////////////////////////////////////
+-t, --timeout   : Time (in ms) before takes picture and shuts down (if not specified, loop)
+-q, --quality   : Set jpeg quality <0 to 100>
+-m, --mode      : Set sensor mode
+-awb, --autowhitebalance        : Enable or disable awb
+-ae, --autoexposure     : Enable or disable ae
+-rgain, --awbrgain      : Set R channel gian vaue <0 to 65535>
+-bgain, --awbbgain      : Set B channel gian vaue <0 to 65535>
+-o, --capture   : usd to get one frame
+-e, --encoding  : Encoding to use for output file (jpg, bmp, gif, png，raw)
+-?, --help      : This help information
