@@ -10,6 +10,8 @@ def clearProperties(arg):
     quality.delete(0,tk.END)
     awb.delete(0,tk.END)
     ae.delete(0,tk.END)
+    rgain.delete(0,tk.END)
+    bgain.delete(0,tk.END)
     output.delete(0,tk.END)
     encoding.delete(0,tk.END)
     mode.delete(0,tk.END)
@@ -19,7 +21,9 @@ def defaultProperties(arg):
     timeout.insert(0,"10000")
     quality.insert(0,"50")
     awb.insert(0,"1")
-    ae.insert(0,"2")
+    ae.insert(0,"1")
+    rgain.insert(0,"0")
+    bgain.insert(0,"0")
     output.insert(0,"capture.jpg")
     encoding.insert(0,"jpg")
     mode.insert(0,"1")
@@ -42,6 +46,14 @@ def runCommand(arg):
     if(ae.get()!=""):
         print(ae.get())
         executionStringArr.append('-ae')
+        executionStringArr.append(ae.get())
+    if( not (rgain.get()=="0" or rgain.get()=="")):
+        print(ae.get())
+        executionStringArr.append('-rgain')
+        executionStringArr.append(ae.get())
+    if( not (bgain.get()=="0" or bgain.get()=="0")):
+        print(ae.get())
+        executionStringArr.append('-bgain')
         executionStringArr.append(ae.get())
     if(output.get()!=""):
         print(output.get())
@@ -102,14 +114,20 @@ awbT.grid(row=4,column=0 , padx=5, pady=5)
 aeT = tk.Label(text="Auto exposure",master=propertyPanel)
 aeT.grid(row=5,column=0 , padx=5, pady=5)
 
+rgainT = tk.Label(text="Red gain",master=propertyPanel)
+rgainT.grid(row=6,column=0 , padx=5, pady=5)
+
+bgainT = tk.Label(text="Blue Gain",master=propertyPanel)
+bgainT.grid(row=7,column=0 , padx=5, pady=5)
+
 outputT = tk.Label(text="Output filename",master=propertyPanel)
-outputT.grid(row=6,column=0 , padx=5, pady=5)
+outputT.grid(row=8,column=0 , padx=5, pady=5)
 
 encodingT = tk.Label(text="encoding",master=propertyPanel)
-encodingT.grid(row=7,column=0 , padx=5, pady=5)
+encodingT.grid(row=9,column=0 , padx=5, pady=5)
 
 modeT = tk.Label(text="mode",master=propertyPanel)
-modeT.grid(row=8,column=0 , padx=5, pady=5)
+modeT.grid(row=10,column=0 , padx=5, pady=5)
 
 ##Description
 timeoutD = tk.Label(text="Time (in ms) before takes picture and shuts down (if not specified, loop)",master=propertyPanel)
@@ -124,14 +142,20 @@ awbD.grid(row=4,column=2 , padx=5, pady=5)
 aeD = tk.Label(text="Enable or disable auto exposure 1= enable 0=disable",master=propertyPanel)
 aeD.grid(row=5,column=2 , padx=5, pady=5)
 
+rgainD = tk.Label(text="only useful when auto white balance = 0 Set R channel gian vaue <0 to 65535>",master=propertyPanel)
+rgainD.grid(row=6,column=2 , padx=5, pady=5)
+
+bgainD = tk.Label(text="only useful when auto white balance = 0 Set B channel gian vaue <0 to 65535>",master=propertyPanel)
+bgainD.grid(row=7,column=2 , padx=5, pady=5)
+
 outputD = tk.Label(text="Output filename, must include file extension",master=propertyPanel)
-outputD.grid(row=6,column=2 , padx=5, pady=5)
+outputD.grid(row=8,column=2 , padx=5, pady=5)
 
 encodingD = tk.Label(text="one of jpg, png, raw, bmp, gif",master=propertyPanel)
-encodingD.grid(row=7,column=2 , padx=5, pady=5)
+encodingD.grid(row=9,column=2 , padx=5, pady=5)
 
 modeD = tk.Label(text="0-2, 0 is fastest lowest resolution 2 is slowest highest resolution",master=propertyPanel)
-modeD.grid(row=8,column=2 , padx=5, pady=5)
+modeD.grid(row=10,column=2 , padx=5, pady=5)
 
 #input
 timeout = tk.Entry(master=propertyPanel)
@@ -146,14 +170,21 @@ awb.grid(row=4,column=1 , padx=5, pady=5)
 ae = tk.Entry(master=propertyPanel)
 ae.grid(row=5,column=1 , padx=5, pady=5)
 
+rgain = tk.Entry(master=propertyPanel)
+rgain.grid(row=6,column=1 , padx=5, pady=5)
+
+bgain = tk.Entry(master=propertyPanel)
+bgain.grid(row=7,column=1 , padx=5, pady=5)
+
+
 output = tk.Entry(master=propertyPanel)
-output.grid(row=6,column=1 , padx=5, pady=5)
+output.grid(row=8,column=1 , padx=5, pady=5)
 
 encoding = tk.Entry(master=propertyPanel)
-encoding.grid(row=7,column=1 , padx=5, pady=5)
+encoding.grid(row=9,column=1 , padx=5, pady=5)
 
 mode = tk.Entry(master=propertyPanel)
-mode.grid(row=8,column=1 , padx=5, pady=5)
+mode.grid(row=10,column=1 , padx=5, pady=5)
 
 #preset panel
 presetTitle=tk.Label(master = presetPanel, text="Preset Panel")
