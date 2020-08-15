@@ -1,4 +1,4 @@
-# PYTHON-respberrypiMIPICameraControl-GUI
+# PYTHON-RaspberrypiMIPICameraControl-GUI
 
 ### Description
 This is a simple GUI control of MIPI camera made by AdruCam on respberry pi
